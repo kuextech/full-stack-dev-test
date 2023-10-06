@@ -43,4 +43,21 @@ class TodoController extends Controller
 
         return response()->json(['message' => 'Task Added!','todo' => $todo]);
     }
+
+    public function completed($id)
+    {
+        $todo = Todo::find($id);
+        $todo->completed = true;
+        $todo->save();
+
+        return response()->json(['message' => 'Task Completed!','todo' => $todo]);
+    }
+
+    public function delete($id)
+    {
+        $todo = Todo::find($id);
+        $todo->delete();
+
+        return response()->json(['message' => 'Task Deleted!']);
+    }
 }
