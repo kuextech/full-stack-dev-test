@@ -39,12 +39,17 @@ function App() {
     });
   }
 
-  const addTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') {
       return
     }
-    
+
+    addTodo();
+  }
+
+  const addTodo = () => {
+
+
     if (newTodoText.trim() !== '') {
       const newTodo: TodoItem = {
         id: 0,
@@ -174,8 +179,8 @@ function App() {
 
           {activeTab === 'active' && (
           <div className="relative mt-4">
-            <input  value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} onKeyDown={addTodo}type="text" className="w-full p-2 pr-24 border border-gray-300 rounded-sm" placeholder="Enter task name..."/>
-            <div className="absolute right-2 top-2  text-xs text-gray-400 bg-gray-100 py-1 px-2 font-bold">PRESS ENTER</div>
+            <input  value={newTodoText} onChange={(e) => setNewTodoText(e.target.value)} onKeyDown={handleEnter}type="text" className="w-full p-2 pr-24 border border-gray-300 rounded-sm" placeholder="Enter task name..."/>
+            <button type="button" onClick={addTodo} className="absolute right-2 top-2  text-xs text-gray-400 bg-gray-100 py-1 px-2 font-bold">PRESS ENTER</button>
           </div>
           )}
           
